@@ -1,0 +1,44 @@
+import React, { useContext } from 'react'
+import GroceryContext from '../context/GroceryContext'
+
+const GroceryComponent = () => {
+    const {
+        groceryInput, 
+        groceryItem, 
+        setGroceryItem, 
+        submitGroceryItem 
+    } = useContext(GroceryContext);
+
+    return (
+        <>
+            <form 
+                className='row justify-content-center mt-4'
+                onSubmit={submitGroceryItem}
+            >
+                <div style={{width: '75vmin'}}>
+                    <div className="input-group mb-2 shadow-sm rounded">
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            placeholder="Enter an Item Here..." 
+                            aria-label="Enter an Item Here..." 
+                            aria-describedby="button-addon2"
+                            value={groceryItem}
+                            onChange={(event)=>setGroceryItem(event.target.value)}
+                            ref={groceryInput}
+                        />
+                        <button 
+                            type='submit'
+                            className="btn btn-outline-primary" 
+                            id="button-addon2"
+                        >
+                            <i className="bi bi-plus-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </>
+    )
+}
+
+export default GroceryComponent

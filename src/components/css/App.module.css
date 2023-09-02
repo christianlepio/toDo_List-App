@@ -1,0 +1,17 @@
+span{
+    margin-right: 0.8rem;
+    cursor: pointer;
+}
+
+.clrBtn{
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+}
+
+.doneBtn{
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+}
+/* .eks , i:hover{
+    color: rgb(206, 32, 32) !important;
+} */
