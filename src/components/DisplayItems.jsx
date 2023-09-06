@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ModalComponent from './ModalComponent';
 
 const DisplayItems = (
         {
@@ -7,8 +8,7 @@ const DisplayItems = (
             removeGroceryItem, 
             markAsDone, 
             editTaskItem, 
-            editInputRef,
-            setMiniHeight
+            editInputRef 
         }
     ) => {
 
@@ -35,61 +35,21 @@ const DisplayItems = (
                 {!isEdit && 
                     <span className="dropdown">
                         {/* Button trigger modal */}
-                        <button type="button" className="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#modalAction">
+                        <button 
+                            type="button" 
+                            className="btn btn-light btn-sm" 
+                            data-bs-toggle="modal" 
+                            data-bs-target={"#modal"+items.id}
+                        >
                             <i className="bi bi-three-dots-vertical"></i>
                         </button>
-
-                        {/* Modal */}
-                        <div className="modal fade" id="modalAction" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div className="modal-dialog modal-dialog-centered">
-                                <div className="modal-content">
-                                    <div className="modal-header">{/*Modal title*/}
-                                        <h1 className="modal-title fs-5" id="exampleModalLabel">Options</h1>
-                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div className="modal-body">{/*Modal body*/}
-                                        <ul className="list-group list-group-flush">
-                                            <li className="list-group-item" data-bs-dismiss="modal" onClick={()=>{console.log(items.name); setIsEdit(true)}}>
-                                                <i className="bi bi-pencil-square text-warning"></i> Edit
-                                            </li>
-                                            <li className="list-group-item bg-light" data-bs-dismiss="modal" onClick={()=>removeGroceryItem(items.id)}>
-                                                <i className="bi bi-x-circle text-danger"></i> Delete
-                                            </li>
-                                            <li className="list-group-item" data-bs-dismiss="modal" onClick={()=>markAsDone(items.id, items.name)}>
-                                                <i className="bi bi-check-circle text-success"></i> Mark as Done
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="modal-footer">{/*Modal footer*/}
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        {/* <button className="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={()=>setMiniHeight('25vh')} >
-                            
-                        </button>
-                        <ul className="dropdown-menu">
-                            <li 
-                                className="dropdown-item"
-                                onClick={()=>{setIsEdit(true)}}
-                            >
-                                <i className="bi bi-pencil-square text-warning"></i> Edit</li>
-                            <li 
-                                className="dropdown-item" 
-                                onClick={()=>removeGroceryItem(items.id)}
-                            >
-                                <i className="bi bi-x-circle text-danger"></i> Delete</li>
-                            <li 
-                                className="dropdown-item" 
-                                onClick={()=>markAsDone(items.id, items.name)}
-                            >
-                                <i className="bi bi-check-circle text-success"></i> Mark as Done</li>
-                        </ul> */}
+                        
+                        <ModalComponent                            
+                            modalItems={items}
+                            setIsEdit={setIsEdit} 
+                            removeGroceryItem={removeGroceryItem} 
+                            markAsDone={markAsDone} 
+                        /> {/* Modal */}                        
                     </span>
                 }
                 

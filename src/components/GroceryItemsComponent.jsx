@@ -40,7 +40,6 @@ const GroceryItemsComponent = () => {
                                             markAsDone={markAsDone} 
                                             editTaskItem={editTaskItem} 
                                             editInputRef={editInputRef} 
-                                            setMiniHeight = {setMiniHeight}
                                         />
                                     )
                                 }
