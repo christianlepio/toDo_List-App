@@ -63,7 +63,10 @@ const DisplayItems = (
                             <button 
                                 className="btn btn-outline-danger" 
                                 type="button"
-                                onClick={()=>setIsEdit(false)}
+                                onClick={()=>{
+                                    setEditedTask(items.name);
+                                    setIsEdit(false);
+                                }}
                             >
                                 <i className="bi bi-x fw-bolder"></i>
                             </button>
