@@ -6,17 +6,40 @@ const GroceryContextProvider = ({children}) => {
     const groceryInput = useRef();
     const [groceryItem, setGroceryItem] = useState('');
     const [groceryList, setGroceryList] = useState([]);
-    const [taskDone, setTaskDone] = useState([]);
+    const [taskDone, setTaskDone] = useState([]); 
+    const [taskExist1, setTaskExist1] = useState(false);
+    const [taskExist2, setTaskExist2] = useState(false);
+    const [errMsg, setErrMsg] = useState('');
 
     useEffect(()=>{
         groceryInput.current.focus();
     },[groceryItem]);
 
+    useEffect(()=>{
+        setErrMsg('');
+        setTaskExist1(false);
+        setTaskExist2(false);
+
+        validateTaskName(groceryItem);
+        if (taskExist1) {
+            setErrMsg('Task has been accomplished!');            
+        }else if(taskExist2){
+            setErrMsg('Task already exist!');
+        }
+    },[taskExist1, taskExist2, groceryItem, taskDone, groceryList]); //dependencies
+
     const submitGroceryItem = (event)=>{
         event.preventDefault(); //to prevent webpage from loading
-        if (groceryItem.trim().length !== 0) { //check if input groceryItem is not null or empty
-            setGroceryList([{id: uuid(), name: groceryItem}, ...groceryList]);
-            setGroceryItem('');
+        if (groceryItem.trim().length !== 0) { //check if input groceryItem is not null or empty 
+            if (!errMsg) {
+                setGroceryList([{id: uuid(), name: groceryItem.trim()}, ...groceryList]);
+                setGroceryItem('');
+                setErrMsg('');
+                setTaskExist1(false);
+                setTaskExist2(false);
+            }else{
+                groceryInput.current.focus();
+            }
         }else{
             groceryInput.current.focus();
         }
@@ -28,20 +51,27 @@ const GroceryContextProvider = ({children}) => {
     };
 
     const markAsDone = (taskId, taskName) => { //mark task item as done
-        setTaskDone([{id: taskId, name: taskName}, ...taskDone]);
+        setTaskDone([{id: taskId, name: taskName.trim()}, ...taskDone]);
         removeGroceryItem(taskId); 
     };
 
-    const editTaskItem = (taskId, taskName) => { //edit task item
+    const editTaskItem = (taskId, taskName) => { //edit task item        
         const updateTaskItem = groceryList.map((item)=>{
             if (item.id === taskId) {
-                return{...item, name: taskName};
+                return{...item, name: taskName.trim()};
             }
 
             return item;
         });
 
         setGroceryList(updateTaskItem);   
+    };
+
+    const validateTaskName = (taskName) => {
+        taskName = taskName.trim();
+
+        setTaskExist1(taskDone.some(doneData=>doneData.name === taskName));
+        setTaskExist2(groceryList.some(itemData=>itemData.name === taskName));         
     };
 
     return (
@@ -58,7 +88,8 @@ const GroceryContextProvider = ({children}) => {
                     markAsDone, 
                     editTaskItem, 
                     taskDone, 
-                    setTaskDone
+                    setTaskDone,
+                    errMsg  
                 }
             }
         >

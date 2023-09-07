@@ -6,7 +6,8 @@ const GroceryComponent = () => {
         groceryInput, 
         groceryItem, 
         setGroceryItem, 
-        submitGroceryItem 
+        submitGroceryItem, 
+        errMsg 
     } = useContext(GroceryContext);
 
     return (
@@ -35,6 +36,7 @@ const GroceryComponent = () => {
                             <i className="bi bi-plus-circle"></i>
                         </button>
                     </div>
+                    {errMsg ? <p className='text-sm text-danger fw-lighter text-center mb-1'>{errMsg}</p> : null}
                 </div>
             </form>
         </>

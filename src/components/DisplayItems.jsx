@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ModalComponent from './ModalComponent';
+import GroceryContext from '../context/GroceryContext';
 
 const DisplayItems = (
         {
@@ -12,14 +13,27 @@ const DisplayItems = (
         }
     ) => {
 
+    const {groceryList, taskDone} = useContext(GroceryContext);
+
     const [editedTask, setEditedTask] = useState(items.name);
     const [isEdit, setIsEdit] = useState(false);
+    const [editErrMsg, setEditErrMsg] = useState('');
+    const [taskExist3, setTaskExist3] = useState(false);
+    const [taskExist4, setTaskExist4] = useState(false);
 
     const saveEdit = (event) => {
         event.preventDefault();
         if (editedTask.trim().length !== 0) {
-            editTaskItem(items.id, editedTask);
-            setIsEdit(false);   
+            if (!editErrMsg) {
+                setEditErrMsg(''); 
+                editTaskItem(items.id, editedTask);
+                setIsEdit(false);   
+            }else{
+                editInputRef.current.focus();
+            }
+        }else{
+            setEditErrMsg('Input must not be empty!');
+            editInputRef.current.focus();
         }
     }
 
@@ -27,7 +41,32 @@ const DisplayItems = (
         if (editInputRef.current) {
             editInputRef.current.focus(); 
         }
-    },[isEdit]);
+    },[isEdit]); 
+
+    useEffect(()=>{
+        setEditErrMsg('');
+        setTaskExist3(false);
+        setTaskExist4(false);
+
+        if (items.name !== editedTask.trim()) {   
+            validateItemEdit(editedTask);
+            
+            if (taskExist3) {
+                setEditErrMsg('Task has been accomplished!');            
+            }else if(taskExist4){
+                setEditErrMsg('Task already exist!');
+            }else if(editedTask.trim().length === 0){
+                setEditErrMsg('Input must not be empty!');
+            }
+        }
+    },[taskExist3, taskExist4, editedTask, taskDone, groceryList]);
+
+    const validateItemEdit = (taskName) => {
+        taskName = taskName.trim();
+
+        setTaskExist3(taskDone.some(doneData=>doneData.name === taskName));
+        setTaskExist4(groceryList.some(itemData=>itemData.name === taskName));         
+    };
 
     return (
         <>                    
@@ -49,7 +88,7 @@ const DisplayItems = (
                             setIsEdit={setIsEdit} 
                             removeGroceryItem={removeGroceryItem} 
                             markAsDone={markAsDone} 
-                        /> {/* Modal */}                        
+                        /> {/* Modal (this will show once the more options button has clicked)*/}                        
                     </span>
                 }
                 
@@ -60,6 +99,7 @@ const DisplayItems = (
                                 className="btn btn-outline-danger" 
                                 type="button"
                                 onClick={()=>{
+                                    setEditErrMsg('');
                                     setEditedTask(items.name);
                                     setIsEdit(false);
                                 }}
@@ -83,6 +123,7 @@ const DisplayItems = (
                                 ref={editInputRef}
                             />
                         </div>
+                        {editErrMsg ? <p className='text-sm text-danger fw-lighter text-center mb-1'>{editErrMsg}</p> : null}
                     </form>
                     : 
                     items.name

@@ -1,6 +1,5 @@
 span{
     margin-right: 0.8rem;
-    cursor: pointer;
 }
 
 .clrBtn{
@@ -11,6 +10,10 @@ span{
 .doneBtn{
     margin-left: 0.8rem;
     margin-right: 0.8rem;
+}
+.doneItems:hover{
+    background-color: #f8f9fa !important;
+    cursor: pointer;
 }
 /* .eks , i:hover{
     color: rgb(206, 32, 32) !important;
