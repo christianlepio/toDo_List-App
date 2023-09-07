@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import GroceryContext from '../context/GroceryContext';
 import { v4 as uuid } from "uuid";
+import Swal from 'sweetalert2';
 
 const GroceryContextProvider = ({children}) => {
     const groceryInput = useRef();
@@ -45,14 +46,28 @@ const GroceryContextProvider = ({children}) => {
         }
     };
 
-    const removeGroceryItem = (groceryItemId) =>{ //delete specific item to an array
+    const removeGroceryItem = (groceryItemId, taskName) =>{ //delete specific item to an array
         const filteredItems = groceryList.filter((items) => items.id !== groceryItemId);
         setGroceryList(filteredItems);
+        Swal.fire({
+            icon: 'success',
+            title: 'Task deleted!',
+            text: `The task "${taskName}" was successfully deleted!`,
+            showConfirmButton: false,
+            timer: 2000
+        });
     };
 
     const markAsDone = (taskId, taskName) => { //mark task item as done
         setTaskDone([{id: taskId, name: taskName.trim()}, ...taskDone]);
-        removeGroceryItem(taskId); 
+        removeGroceryItem(taskId);
+        Swal.fire({
+            icon: 'success',
+            title: 'Good Job!',
+            text: 'The task was successfully completed!',
+            showConfirmButton: false,
+            timer: 2000
+        });
     };
 
     const editTaskItem = (taskId, taskName) => { //edit task item        

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ModalComponent from './ModalComponent';
 import GroceryContext from '../context/GroceryContext';
+import Style from './css/App.module.css';
 
 const DisplayItems = (
         {
@@ -72,7 +73,7 @@ const DisplayItems = (
         <>                    
             <li className={'list-group-item border-start-0 border-bottom-0 border-top-0 border-end-0 rounded text-break lh-lg ' + (index % 2 == 0 ? '' : 'bg-light')}>
                 {!isEdit && 
-                    <span className="dropdown">
+                    <span>
                         {/* Button trigger modal */}
                         <button 
                             type="button" 
@@ -126,7 +127,7 @@ const DisplayItems = (
                         {editErrMsg ? <p className='text-sm text-danger fw-lighter text-center mb-1'>{editErrMsg}</p> : null}
                     </form>
                     : 
-                    items.name
+                    <span className={Style.memaSpan}>{items.name}</span>
                 }
             </li>
         </>
