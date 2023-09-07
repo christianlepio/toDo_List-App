@@ -120,7 +120,7 @@ const DisplayItems = (
                                 aria-label="Example text with button addon" 
                                 aria-describedby="button-addon1" 
                                 value={editedTask} 
-                                onChange={(e)=>setEditedTask(e.target.value)} 
+                                onChange={(e)=>setEditedTask(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))} //to uppercase first letter of the text
                                 ref={editInputRef}
                             />
                         </div>

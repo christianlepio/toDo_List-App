@@ -54,7 +54,7 @@ const GroceryContextProvider = ({children}) => {
             title: 'Task deleted!',
             text: `The task "${taskName}" was successfully deleted!`,
             showConfirmButton: false,
-            timer: 2000
+            timer: 2500
         });
     };
 
@@ -64,9 +64,9 @@ const GroceryContextProvider = ({children}) => {
         Swal.fire({
             icon: 'success',
             title: 'Good Job!',
-            text: 'The task was successfully completed!',
+            text: `The task "${taskName}" was successfully completed!`,
             showConfirmButton: false,
-            timer: 2000
+            timer: 2500
         });
     };
 

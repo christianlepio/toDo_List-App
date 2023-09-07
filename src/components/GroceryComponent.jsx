@@ -25,7 +25,7 @@ const GroceryComponent = () => {
                             aria-label="Enter an Item Here..." 
                             aria-describedby="button-addon2"
                             value={groceryItem}
-                            onChange={(event)=>setGroceryItem(event.target.value)}
+                            onChange={(event)=>setGroceryItem(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1))} //to uppercase first letter of the text
                             ref={groceryInput}
                         />
                         <button 
