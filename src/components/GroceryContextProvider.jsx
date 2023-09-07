@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import GroceryContext from '../context/GroceryContext';
 import { v4 as uuid } from "uuid";
 import Swal from 'sweetalert2';
+import Style from './css/App.module.css';
 
 const GroceryContextProvider = ({children}) => {
     const groceryInput = useRef();
@@ -50,9 +51,12 @@ const GroceryContextProvider = ({children}) => {
         const filteredItems = groceryList.filter((items) => items.id !== groceryItemId);
         setGroceryList(filteredItems);
         Swal.fire({
-            icon: 'success',
             title: 'Task deleted!',
             text: `The task "${taskName}" was successfully deleted!`,
+            iconHtml: '<i class="bi bi-trash3"></i>',
+            customClass:{
+                icon: `${Style.iconBorder}`,
+            },
             showConfirmButton: false,
             timer: 2500
         });
@@ -70,16 +74,28 @@ const GroceryContextProvider = ({children}) => {
         });
     };
 
-    const editTaskItem = (taskId, taskName) => { //edit task item        
+    const editTaskItem = (taskId, taskName) => { //edit task item   
+        let updateIndicator = false;     
         const updateTaskItem = groceryList.map((item)=>{
-            if (item.id === taskId) {
+            if (item.id === taskId && item.name !== taskName.trim()) {
+                updateIndicator = true;
                 return{...item, name: taskName.trim()};
             }
-
+            
             return item;
         });
 
-        setGroceryList(updateTaskItem);   
+        setGroceryList(updateTaskItem);  
+
+        if (updateIndicator) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Task Updated!',
+                text: `The task was updated to "${taskName}".`,
+                showConfirmButton: false,
+                timer: 2500
+            });    
+        }
     };
 
     const validateTaskName = (taskName) => {
