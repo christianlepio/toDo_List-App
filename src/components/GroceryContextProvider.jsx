@@ -52,13 +52,13 @@ const GroceryContextProvider = ({children}) => {
         setGroceryList(filteredItems);
         Swal.fire({
             title: 'Task deleted!',
-            text: `The task "${taskName}" was successfully deleted!`,
+            text: `Task "${taskName}" was successfully deleted!`,
             iconHtml: '<i class="bi bi-trash3"></i>',
             customClass:{
                 icon: `${Style.iconBorder}`,
             },
             showConfirmButton: false,
-            timer: 2500
+            timer: 3000
         });
     };
 
@@ -68,9 +68,9 @@ const GroceryContextProvider = ({children}) => {
         Swal.fire({
             icon: 'success',
             title: 'Good Job!',
-            text: `The task "${taskName}" was successfully completed!`,
+            text: `Task "${taskName}" was successfully completed!`,
             showConfirmButton: false,
-            timer: 2500
+            timer: 3000
         });
     };
 
@@ -91,18 +91,18 @@ const GroceryContextProvider = ({children}) => {
             Swal.fire({
                 icon: 'success',
                 title: 'Task Updated!',
-                text: `The task was updated to "${taskName}".`,
+                text: `Task was updated to "${taskName}".`,
                 showConfirmButton: false,
-                timer: 2500
+                timer: 3000
             });    
         }
     };
 
     const validateTaskName = (taskName) => {
-        taskName = taskName.trim();
+        taskName = taskName.trim().toUpperCase();
 
-        setTaskExist1(taskDone.some(doneData=>doneData.name === taskName));
-        setTaskExist2(groceryList.some(itemData=>itemData.name === taskName));         
+        setTaskExist1(taskDone.some(doneData=>doneData.name.toUpperCase() === taskName));
+        setTaskExist2(groceryList.some(itemData=>itemData.name.toUpperCase() === taskName));         
     };
 
     return (

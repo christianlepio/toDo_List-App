@@ -63,10 +63,10 @@ const DisplayItems = (
     },[taskExist3, taskExist4, editedTask, taskDone, groceryList]);
 
     const validateItemEdit = (taskName) => {
-        taskName = taskName.trim();
+        taskName = taskName.trim().toUpperCase();
 
-        setTaskExist3(taskDone.some(doneData=>doneData.name === taskName));
-        setTaskExist4(groceryList.some(itemData=>itemData.name === taskName));         
+        setTaskExist3(taskDone.some(doneData=>doneData.name.toUpperCase() === taskName));
+        setTaskExist4(groceryList.some(itemData=>itemData.name.toUpperCase() === taskName));         
     };
 
     return (
