@@ -10,11 +10,11 @@ const DisplayItems = (
             removeGroceryItem, 
             markAsDone, 
             editTaskItem, 
-            editInputRef 
+            editInputRef
         }
     ) => {
 
-    const {groceryList, taskDone} = useContext(GroceryContext);
+    const {groceryList, taskDone, darkMode} = useContext(GroceryContext);
 
     const [editedTask, setEditedTask] = useState(items.name);
     const [isEdit, setIsEdit] = useState(false);
@@ -77,7 +77,7 @@ const DisplayItems = (
                         {/* Button trigger modal */}
                         <button 
                             type="button" 
-                            className="btn btn-light btn-sm" 
+                            className={"btn btn-light btn-sm "+(darkMode ? index % 2 == 0 ? 'taskItemBtn1' : 'taskItemBtn2' : '')} 
                             data-bs-toggle="modal" 
                             data-bs-target={"#modal"+items.id}
                         >
@@ -115,7 +115,7 @@ const DisplayItems = (
                             </button>
                             <input 
                                 type="text" 
-                                className="form-control" 
+                                className={"form-control " + (darkMode ? index % 2 == 0 ? 'inputItem2' : 'inputItem' : '')} 
                                 placeholder="Enter an Item Here..." 
                                 aria-label="Example text with button addon" 
                                 aria-describedby="button-addon1" 

@@ -11,7 +11,8 @@ const GroceryItemsComponent = () => {
             markAsDone, 
             editTaskItem, 
             taskDone, 
-            setTaskDone 
+            setTaskDone, 
+            darkMode 
         } = useContext(GroceryContext);
 
     const editInputRef = useRef();
@@ -51,7 +52,7 @@ const GroceryItemsComponent = () => {
                         <div className="col-12 text-center">
                             {groceryList.length > 0 && 
                                 <button 
-                                    className={'btn btn-light shadow-sm fs-6 mb-2 ' + Style.clrBtn } 
+                                    className={'btn btn-light shadow-sm fs-6 mb-2 ' + Style.clrBtn + (darkMode ? ' clrDoneBtn' : '')} 
                                     onClick={()=>setGroceryList([])}
                                 >
                                     Clear Tasks
@@ -60,7 +61,7 @@ const GroceryItemsComponent = () => {
                             {taskDone.length > 0 && 
                                 <button 
                                     type="button" 
-                                    className={'btn btn-light shadow-sm fs-6 mb-2 ' + Style.doneBtn } 
+                                    className={'btn btn-light shadow-sm fs-6 mb-2 ' + Style.doneBtn + (darkMode ? ' clrDoneBtn' : '')} 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#exampleModal" 
                                 >

@@ -12,6 +12,7 @@ const GroceryContextProvider = ({children}) => {
     const [taskExist1, setTaskExist1] = useState(false);
     const [taskExist2, setTaskExist2] = useState(false);
     const [errMsg, setErrMsg] = useState('');
+    const [darkMode, setDarkModee] = useState(false);
 
     useEffect(()=>{
         groceryInput.current.focus();
@@ -120,7 +121,9 @@ const GroceryContextProvider = ({children}) => {
                     editTaskItem, 
                     taskDone, 
                     setTaskDone,
-                    errMsg  
+                    errMsg, 
+                    darkMode, 
+                    setDarkModee 
                 }
             }
         >

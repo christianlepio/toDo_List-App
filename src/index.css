@@ -8,7 +8,7 @@
   --todoBg: #2f3541;
   --todoBg2: #2f3541;
   --plcHolder: #6f7175;
-  /* --inputItemBg: #282c34; */
+  --btnBorder: 0px;
 }
 
 body{
@@ -23,6 +23,13 @@ body{
 .inputItem{
   background-color: var(--body_background) !important;
   color: var(--font_color) !important;
+  border: var(--btnBorder) !important;
+}
+
+.inputItem2{
+  background-color: var(--todoBg2) !important;
+  color: var(--font_color) !important;
+  border: var(--btnBorder) !important;
 }
 
 ::placeholder {
@@ -45,4 +52,26 @@ body{
 
 .taskItems2{
   background-color: var(--todoBg2) !important;
+}
+
+.taskItemBtn1{
+  background-color: var(--todoBg2) !important;
+  color: var(--font_color) !important;
+  border: var(--btnBorder) !important;
+}
+
+.taskItemBtn2{
+  background-color: var(--body_background) !important;
+  color: var(--font_color) !important;
+  border: var(--btnBorder) !important;
+}
+
+.clrDoneBtn{
+  background-color: var(--body_background) !important;
+  color: rgb(233, 227, 227) !important;
+  border: var(--btnBorder) !important;
+}
+
+.clrDoneBtn:hover{
+  background-color: #202225 !important;
 }

@@ -7,7 +7,8 @@ const GroceryComponent = () => {
         groceryItem, 
         setGroceryItem, 
         submitGroceryItem, 
-        errMsg 
+        errMsg, 
+        darkMode 
     } = useContext(GroceryContext);
 
     return (
@@ -20,7 +21,7 @@ const GroceryComponent = () => {
                     <div className="input-group mb-2 shadow-sm rounded">
                         <input 
                             type="text" 
-                            className="form-control inputItem" 
+                            className={"form-control " + (darkMode ? 'inputItem' : '')} 
                             placeholder="Enter an Item Here..." 
                             aria-label="Enter an Item Here..." 
                             aria-describedby="button-addon2"

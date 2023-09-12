@@ -7,18 +7,18 @@ function App() {
   return (
     <>
       <div className="container">
-        <ToggleTheme />
-        <div style={{marginTop: '8vh',}}>
-          <div className="row justify-content-center">
-            <div className="col-10 shadow rounded p-3 border-top border-info border-5 mb-5 todoBox">
-              <h1 className='fs-1 text-center font-monospace'>ToDo-List App</h1>
-              <GroceryContextProvider>
-                <GroceryComponent />
-                <GroceryItemsComponent />
-              </GroceryContextProvider>  
+        <GroceryContextProvider>
+          <ToggleTheme />
+          <div style={{marginTop: '8vh',}}>
+            <div className="row justify-content-center">
+              <div className="col-10 shadow rounded p-3 border-top border-info border-5 mb-5 todoBox">
+                <h1 className='fs-1 text-center font-monospace'>ToDo-List</h1>
+                  <GroceryComponent />
+                  <GroceryItemsComponent />
+              </div>
             </div>
           </div>
-        </div>  
+        </GroceryContextProvider>                
       </div>  
     </>
   )
