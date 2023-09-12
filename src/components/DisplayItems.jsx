@@ -71,7 +71,7 @@ const DisplayItems = (
 
     return (
         <>                    
-            <li className={'list-group-item border-start-0 border-bottom-0 border-top-0 border-end-0 rounded text-break lh-lg ' + (index % 2 == 0 ? '' : 'bg-light')}>
+            <li className={'list-group-item border-start-0 border-bottom-0 border-top-0 border-end-0 rounded text-break lh-lg taskItems ' + (index % 2 == 0 ? '' : ' taskItems2 ')}>
                 {!isEdit && 
                     <span>
                         {/* Button trigger modal */}

@@ -34,3 +34,10 @@
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
+
+/* toggle button for light/dark mode */
+.toggleBtn{
+    height: 1.5rem !important;
+    width: 3rem !important;
+}
+  

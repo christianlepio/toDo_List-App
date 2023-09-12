@@ -20,7 +20,7 @@ const GroceryComponent = () => {
                     <div className="input-group mb-2 shadow-sm rounded">
                         <input 
                             type="text" 
-                            className="form-control" 
+                            className="form-control inputItem" 
                             placeholder="Enter an Item Here..." 
                             aria-label="Enter an Item Here..." 
                             aria-describedby="button-addon2"
@@ -30,7 +30,7 @@ const GroceryComponent = () => {
                         />
                         <button 
                             type='submit'
-                            className="btn btn-outline-primary" 
+                            className="btn btn-primary" 
                             id="button-addon2"
                         >
                             <i className="bi bi-plus-circle"></i>
