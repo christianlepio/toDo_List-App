@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GroceryContext from '../context/GroceryContext';
 import MainStyle from './css/App.module.css';
 
@@ -9,11 +9,23 @@ const ToggleTheme = () => {
 
     const setDarkMode = () => {
         document.querySelector("body").setAttribute('data-theme', 'dark');
+        localStorage.setItem('selectedTheme', 'dark'); //to save previous theme when reload page
     };
     
     const setLightMode = () => {
         document.querySelector("body").setAttribute('data-theme', 'light');
+        localStorage.setItem('selectedTheme', 'light'); //to save previous theme when reload page
     };
+
+    const selectedTheme = localStorage.getItem('selectedTheme');
+
+    useEffect(()=>{
+        if (selectedTheme === 'dark') {
+            setDarkMode();
+            setBtnBg('bg-warning border-warning');
+            setDarkModee(true);
+        }
+    },[selectedTheme]);
 
     const toggleThemeBtn = (e) => {
         if (e.target.checked) {            
@@ -42,7 +54,8 @@ const ToggleTheme = () => {
                             type="checkbox" 
                             role="switch" 
                             id="flexSwitchCheckChecked" 
-                            onChange={toggleThemeBtn}
+                            onChange={toggleThemeBtn} 
+                            defaultChecked={selectedTheme === 'dark'} 
                         />
                     </div>
                 </div>

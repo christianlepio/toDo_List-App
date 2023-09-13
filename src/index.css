@@ -98,3 +98,11 @@ body{
 .togCursor{
   cursor: pointer !important;
 }
+
+body {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.bi-moon-fill, .bi-brightness-low-fill{
+  transition: all 0.5s ease-in-out !important;
+}
