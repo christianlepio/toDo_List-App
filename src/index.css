@@ -52,6 +52,7 @@ body{
 
 .taskItems2{
   background-color: var(--todoBg2) !important;
+  color: var(--font_color) !important;
 }
 
 .taskItemBtn1{
@@ -74,4 +75,22 @@ body{
 
 .clrDoneBtn:hover{
   background-color: #202225 !important;
+}
+
+.modalBg{
+  background-color: var(--body_background) !important;
+}
+
+.modalBg2{
+  background-color: var(--todoBg) !important;
+  color: var(--font_color) !important;
+}
+
+.bgLight{
+  background-color: var(--body_background) !important;
+}
+
+.hoverMe:hover{
+  background-color: var(--body_background) !important;
+  cursor: pointer !important;
 }

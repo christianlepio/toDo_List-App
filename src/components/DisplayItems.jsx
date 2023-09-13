@@ -89,6 +89,7 @@ const DisplayItems = (
                             setIsEdit={setIsEdit} 
                             removeGroceryItem={removeGroceryItem} 
                             markAsDone={markAsDone} 
+                            darkMode={darkMode} 
                         /> {/* Modal (this will show once the more options button has clicked)*/}                        
                     </span>
                 }

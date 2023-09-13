@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { Children, useContext, useEffect, useRef, useState } from 'react'
 import GroceryContext from '../context/GroceryContext';
 import Style from './css/App.module.css';
 import DisplayItems from './DisplayItems';
@@ -74,7 +74,7 @@ const GroceryItemsComponent = () => {
                     {/* this is modal dialog box */}
                     <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div className="modal-content">
+                            <div className={"modal-content border-top border-info border-4 border-start-0 border-bottom-0 border-end-0 "+(darkMode ? 'modalBg' : '')}>
                                 <div className="modal-header">
                                     <h1 className="modal-title fs-5" id="exampleModalLabel"><i className="bi bi-check-circle-fill text-success"></i> Accomplished Tasks</h1>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -82,10 +82,10 @@ const GroceryItemsComponent = () => {
                                 <div className="modal-body">
                                     {taskDone.length > 0 ? 
                                     <>
-                                        <ul className="list-group list-group-flush">
+                                        <ul className="list-group list-group-flush rounded border-top border-info border-4 shadow-sm">
                                             {taskDone.map((task, indx)=>{
-                                                const listBg = indx % 2 == 0 ? '' : 'bg-light';
-                                                return (<li key={task.id} className={'list-group-item ' + listBg}><i className="bi bi-check-circle text-success"></i> {task.name}</li>);
+                                                const listBg = indx % 2 == 0 ? '' : 'bgLight';
+                                                return (<li key={task.id} className={'list-group-item rounded border-bottom-0 taskItems2 '+listBg}><i className="bi bi-check-circle text-success"></i> {task.name}</li>);
                                             })}
                                         </ul>
                                     </> 

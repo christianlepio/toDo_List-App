@@ -9,7 +9,7 @@ function App() {
       <div className="container">
         <GroceryContextProvider>
           <ToggleTheme />
-          <div style={{marginTop: '8vh',}}>
+          <div style={{marginTop: '4vh',}}>
             <div className="row justify-content-center">
               <div className="col-10 shadow rounded p-3 border-top border-info border-5 mb-5 todoBox">
                 <h1 className='fs-1 text-center font-monospace'>ToDo-List</h1>

@@ -29,10 +29,14 @@ const ToggleTheme = () => {
 
     return (
         <>
-            <div className="row justify-content-end mt-3">        
-                <div className="col-12">
-                    <div className="form-check form-switch form-check-reverse mx-3">
-                        {darkMode ? <i className="bi bi-moon-fill text-light lh-lg mx-3 fs-6"></i> : <i className="bi bi-brightness-low-fill text-warning mx-3 fs-4"></i>}
+            <div className="row justify-content-center mt-3">        
+                <div className={"col-10 rounded border-top border-info border-4 "+(darkMode ? 'shadow todoBox' : 'shadow-sm')}>
+                    <div className="form-check form-switch form-check-reverse my-2">
+                        {darkMode ? 
+                            <i className="bi bi-moon-fill text-light lh-lg mx-3 fs-6"></i>
+                        : 
+                            <i className="bi bi-brightness-low-fill text-warning mx-3 fs-4"></i>
+                        }
                         <input 
                             className={btnBg+" form-check-input "+MainStyle.toggleBtn} 
                             type="checkbox" 
