@@ -11,7 +11,7 @@ function App() {
           <ToggleTheme />
           <div style={{marginTop: '3vh',}}>
             <div className="row justify-content-center">
-              <div className="col-10 shadow rounded p-3 border-top border-info border-5 mb-5 todoBox">
+              <div className="col-10 shadow rounded p-3 border-top border-info border-5 mb-4 todoBox">
                 <h1 className='fs-1 text-center font-monospace'><i className="fs-2 bi bi-view-list"></i><i className="fs-2 bi bi-align-top"></i><i className="fs-5 bi bi-app"></i>D<i className="fs-2 bi bi-app-indicator"></i>-Lis<i className="fs-2 bi bi-align-top"></i></h1>
                   <GroceryComponent />
                   <GroceryItemsComponent />
