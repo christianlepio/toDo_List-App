@@ -16,13 +16,6 @@ const GroceryItemsComponent = () => {
         } = useContext(GroceryContext);
 
     const editInputRef = useRef();
-    const [miniHeight, setMiniHeight] = useState('');
-
-    useEffect(()=>{
-        if (groceryList.length >= 10) {
-            setMiniHeight('50vh');
-        }
-    },[groceryList]);
 
     return (
         <>
@@ -30,7 +23,7 @@ const GroceryItemsComponent = () => {
                 <div className="table-responsive">
                     {groceryList.length > 0 && 
                         <ul className="list-group list-group-flush shadow-sm rounded border-top border-info border-4">
-                            <div className="overflow-y-auto" style={{maxHeight: '50vh', minHeight: miniHeight}}>
+                            <div className="overflow-y-auto" style={{maxHeight: '50vh'}}>
                                 {
                                     groceryList.map((itemData, index)=>
                                         <DisplayItems
