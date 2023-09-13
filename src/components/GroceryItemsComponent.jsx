@@ -75,7 +75,7 @@ const GroceryItemsComponent = () => {
                                 <div className="modal-body">
                                     {taskDone.length > 0 ? 
                                     <>
-                                        <ul className="list-group list-group-flush rounded border-top border-info border-4 shadow-sm">
+                                        <ul className="list-group list-group-flush rounded shadow-sm">
                                             {taskDone.map((task, indx)=>{
                                                 const listBg = indx % 2 == 0 ? '' : 'bgLight';
                                                 return (<li key={task.id} className={'list-group-item rounded border-bottom-0 taskItems2 '+listBg}><i className="bi bi-check-circle text-success"></i> {task.name}</li>);

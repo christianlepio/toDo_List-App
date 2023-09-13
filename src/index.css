@@ -94,3 +94,7 @@ body{
   background-color: var(--body_background) !important;
   cursor: pointer !important;
 }
+
+.togCursor{
+  cursor: pointer !important;
+}

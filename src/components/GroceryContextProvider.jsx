@@ -13,6 +13,8 @@ const GroceryContextProvider = ({children}) => {
     const [taskExist2, setTaskExist2] = useState(false);
     const [errMsg, setErrMsg] = useState('');
     const [darkMode, setDarkModee] = useState(false);
+    const [swalBg, setSwalBg] = useState('#f8f9fa');
+    const [swalColor, setSwalColor] = useState('#212529');
 
     useEffect(()=>{
         groceryInput.current.focus();
@@ -30,6 +32,16 @@ const GroceryContextProvider = ({children}) => {
             setErrMsg('Task already exist!');
         }
     },[taskExist1, taskExist2, groceryItem, taskDone, groceryList]); //dependencies
+
+    useEffect(()=>{
+        if (darkMode) {
+            setSwalBg('#282c34');
+            setSwalColor('#f8f9fa');
+        }else{
+            setSwalBg('#f8f9fa');
+            setSwalColor('#212529');
+        }
+    },[darkMode]);    
 
     const submitGroceryItem = (event)=>{
         event.preventDefault(); //to prevent webpage from loading
@@ -54,6 +66,8 @@ const GroceryContextProvider = ({children}) => {
         Swal.fire({
             title: 'Task deleted!',
             text: `Task "${taskName}" was successfully deleted!`,
+            color: swalColor,
+            background: swalBg, 
             iconHtml: '<i class="bi bi-trash3"></i>',
             customClass:{
                 icon: `${Style.iconBorder}`,
@@ -70,6 +84,8 @@ const GroceryContextProvider = ({children}) => {
             icon: 'success',
             title: 'Good Job!',
             text: `Task "${taskName}" was successfully completed!`,
+            color: swalColor,
+            background: swalBg,             
             showConfirmButton: false,
             timer: 3000
         });
@@ -93,6 +109,8 @@ const GroceryContextProvider = ({children}) => {
                 icon: 'success',
                 title: 'Task Updated!',
                 text: `Task was updated to "${taskName}".`,
+                color: swalColor,
+                background: swalBg, 
                 showConfirmButton: false,
                 timer: 3000
             });    

@@ -38,7 +38,7 @@ const ToggleTheme = () => {
                             <i className="bi bi-brightness-low-fill text-warning mx-3 fs-4"></i>
                         }
                         <input 
-                            className={btnBg+" form-check-input "+MainStyle.toggleBtn} 
+                            className={btnBg+" togCursor form-check-input "+MainStyle.toggleBtn} 
                             type="checkbox" 
                             role="switch" 
                             id="flexSwitchCheckChecked" 

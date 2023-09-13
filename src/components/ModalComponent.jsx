@@ -15,13 +15,13 @@ const ModalComponent = (children) => {
                         <div className="modal-body">{/*Modal body*/}
                             <p className={'fs-6 fw-lighter mt-1 mb-1 '+ (children.darkMode ? 'text-body-light' : 'text-body-secondary')}>Task: {children.modalItems.name}</p>
                             <ul className={"list-group list-group-flush rounded"}>
-                                <li className={"list-group-item "+(children.darkMode ? 'taskItems2 hoverMe' : Style.doneItems)} data-bs-dismiss="modal" onClick={()=>children.setIsEdit(true)}>
+                                <li className={"list-group-item "+(children.darkMode ? 'border-bottom-0 taskItems2 hoverMe' : Style.doneItems)} data-bs-dismiss="modal" onClick={()=>children.setIsEdit(true)}>
                                     <i className="bi bi-pencil-square text-warning"></i> Edit
                                 </li>
-                                <li className={"list-group-item "+(children.darkMode ? 'taskItems2 hoverMe' : Style.doneItems)} data-bs-dismiss="modal" onClick={()=>children.removeGroceryItem(children.modalItems.id, children.modalItems.name)}>
+                                <li className={"list-group-item "+(children.darkMode ? 'border-bottom-0 taskItems2 hoverMe' : Style.doneItems)} data-bs-dismiss="modal" onClick={()=>children.removeGroceryItem(children.modalItems.id, children.modalItems.name)}>
                                     <i className="bi bi-x-circle text-danger"></i> Delete
                                 </li>
-                                <li className={"list-group-item "+(children.darkMode ? 'taskItems2 hoverMe' : Style.doneItems)} data-bs-dismiss="modal" onClick={()=>children.markAsDone(children.modalItems.id, children.modalItems.name)}>
+                                <li className={"list-group-item "+(children.darkMode ? 'border-bottom-0 taskItems2 hoverMe' : Style.doneItems)} data-bs-dismiss="modal" onClick={()=>children.markAsDone(children.modalItems.id, children.modalItems.name)}>
                                     <i className="bi bi-check-circle text-success"></i> Mark as Done
                                 </li>
                             </ul>
