@@ -82,6 +82,7 @@ const GroceryContextProvider = ({children}) => {
     const removeGroceryItem = (groceryItemId, taskName) =>{ //delete specific item to an array
         const filteredItems = groceryList.filter((items) => items.id !== groceryItemId);
         setGroceryList(filteredItems);
+        localStorage.setItem('localGroceryList', JSON.stringify(filteredItems));
         Swal.fire({
             title: 'Task deleted!',
             text: `Task "${taskName}" was successfully deleted!`,
