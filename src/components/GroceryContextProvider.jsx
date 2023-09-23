@@ -21,7 +21,7 @@ const GroceryContextProvider = ({children}) => {
 
     useEffect(()=>{
         if (groceryList.length === 0) {
-            if (localGroceryList?.length > 0) {
+            if (localGroceryList !== null && localGroceryList.length > 0) {
                 setGroceryList(localGroceryList);
             }
         }else{
@@ -31,7 +31,7 @@ const GroceryContextProvider = ({children}) => {
 
     useEffect(()=>{
         if (taskDone.length === 0) {
-            if (localTaskDone?.length > 0) {
+            if (localTaskDone !== null && localTaskDone.length > 0) {
                 setTaskDone(localTaskDone);
             }
         }else{
