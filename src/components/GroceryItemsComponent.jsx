@@ -1,5 +1,6 @@
 import React, { Children, useContext, useEffect, useRef, useState } from 'react'
 import GroceryContext from '../context/GroceryContext';
+import Swal from 'sweetalert2';
 import Style from './css/App.module.css';
 import DisplayItems from './DisplayItems';
 
@@ -12,10 +13,27 @@ const GroceryItemsComponent = () => {
             editTaskItem, 
             taskDone, 
             setTaskDone, 
-            darkMode 
+            darkMode, 
+            swalColor, 
+            swalBg  
         } = useContext(GroceryContext);
 
     const editInputRef = useRef();
+
+    const swalAlertFunc = (titles, texts) => {
+        Swal.fire({
+            title: titles, //'Tasks Cleared!',
+            text: texts, //'All Tasks was successfully deleted!',
+            color: swalColor,
+            background: swalBg, 
+            iconHtml: '<i class="bi bi-trash3"></i>',
+            customClass:{
+                icon: `${Style.iconBorder}`,
+            },
+            showConfirmButton: false,
+            timer: 3000
+        });
+    };
 
     return (
         <>
@@ -46,7 +64,11 @@ const GroceryItemsComponent = () => {
                             {groceryList.length > 0 && 
                                 <button 
                                     className={'btn btn-light shadow-sm fs-6 mb-2 ' + Style.clrBtn + (darkMode ? ' clrDoneBtn' : '')} 
-                                    onClick={()=>setGroceryList([])}
+                                    onClick={()=>{
+                                        setGroceryList([]);
+                                        localStorage.setItem('localGroceryList', JSON.stringify([]));
+                                        swalAlertFunc('Tasks Cleared!','All Tasks was successfully deleted!');
+                                    }}
                                 >
                                     Clear Tasks
                                 </button>
@@ -89,7 +111,18 @@ const GroceryItemsComponent = () => {
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    {taskDone.length > 0 && <button type="button" className="btn btn-danger" onClick={()=>{setTaskDone([])}}>Clear Items</button>}
+                                    {taskDone.length > 0 && 
+                                        <button 
+                                            type="button" 
+                                            className="btn btn-danger" 
+                                            onClick={()=>{
+                                                setTaskDone([]);
+                                                localStorage.setItem('localTaskDone1', JSON.stringify([]));
+                                                swalAlertFunc('Cleared!','Your accomplished tasks were cleared!');
+                                            }}
+                                        >
+                                            Clear Items
+                                        </button>}
                                 </div>
                             </div>
                         </div>

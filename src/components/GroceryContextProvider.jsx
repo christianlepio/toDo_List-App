@@ -16,6 +16,29 @@ const GroceryContextProvider = ({children}) => {
     const [swalBg, setSwalBg] = useState('#f8f9fa');
     const [swalColor, setSwalColor] = useState('#212529');
 
+    let localGroceryList = JSON.parse(localStorage.getItem('localGroceryList'));
+    let localTaskDone = JSON.parse(localStorage.getItem('localTaskDone1'));
+
+    useEffect(()=>{
+        if (groceryList.length === 0) {
+            if (localGroceryList.length > 0) {
+                setGroceryList(localGroceryList);
+            }
+        }else{
+            localStorage.setItem('localGroceryList', JSON.stringify(groceryList));
+        }
+    },[localGroceryList]); //save or get grocerylist from localStorage
+
+    useEffect(()=>{
+        if (taskDone.length === 0) {
+            if (localTaskDone.length > 0) {
+                setTaskDone(localTaskDone);
+            }
+        }else{
+            localStorage.setItem('localTaskDone1', JSON.stringify(taskDone));
+        }
+    },[localTaskDone]); //save or get taskDone from localStorage
+
     useEffect(()=>{
         groceryInput.current.focus();
     },[groceryItem]);
@@ -141,7 +164,9 @@ const GroceryContextProvider = ({children}) => {
                     setTaskDone,
                     errMsg, 
                     darkMode, 
-                    setDarkModee 
+                    setDarkModee, 
+                    swalColor, 
+                    swalBg 
                 }
             }
         >
