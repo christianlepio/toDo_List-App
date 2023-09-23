@@ -20,20 +20,16 @@ const GroceryContextProvider = ({children}) => {
     let localTaskDone = JSON.parse(localStorage.getItem('localTaskDone1'));
 
     useEffect(()=>{
-        if (groceryList.length === 0) {
-            if (localGroceryList !== null && localGroceryList.length > 0) {
-                setGroceryList(localGroceryList);
-            }
+        if (localGroceryList != null && localGroceryList.length > 0 && groceryList.length === 0) {
+            setGroceryList(localGroceryList);
         }else{
             localStorage.setItem('localGroceryList', JSON.stringify(groceryList));
         }
     },[localGroceryList]); //save or get grocerylist from localStorage
 
     useEffect(()=>{
-        if (taskDone.length === 0) {
-            if (localTaskDone !== null && localTaskDone.length > 0) {
-                setTaskDone(localTaskDone);
-            }
+        if (localTaskDone != null && localTaskDone.length > 0 && taskDone.length === 0) {
+            setTaskDone(localTaskDone);
         }else{
             localStorage.setItem('localTaskDone1', JSON.stringify(taskDone));
         }
