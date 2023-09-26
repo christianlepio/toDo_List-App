@@ -92,36 +92,42 @@ const GroceryContextProvider = ({children}) => {
     };
 
     const removeGroceryItem = (groceryItemId, taskName) =>{ //delete specific item to an array
-        Swal.fire({
-            title: `Delete task "${taskName}"?`,
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            color: swalColor,
-            background: swalBg, 
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if (result.isConfirmed) {
-                const filteredItems = groceryList.filter((items) => items.id !== groceryItemId);
-                setGroceryList(filteredItems);
-                localStorage.setItem('localGroceryList', JSON.stringify(filteredItems));
-                
-                Swal.fire({
-                    title: 'Task deleted!',
-                    text: `Task "${taskName}" was successfully deleted!`,
-                    color: swalColor,
-                    background: swalBg, 
-                    iconHtml: '<i class="bi bi-trash3"></i>',
-                    customClass:{
-                        icon: `${Style.iconBorder}`,
-                    },
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            }
-          })
+        if (!taskName) {
+            const filteredItems = groceryList.filter((items) => items.id !== groceryItemId);
+            setGroceryList(filteredItems);
+            localStorage.setItem('localGroceryList', JSON.stringify(filteredItems));
+        }else{
+            Swal.fire({
+                title: `Delete task "${taskName}"?`,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                color: swalColor,
+                background: swalBg, 
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const filteredItems = groceryList.filter((items) => items.id !== groceryItemId);
+                    setGroceryList(filteredItems);
+                    localStorage.setItem('localGroceryList', JSON.stringify(filteredItems));
+
+                    Swal.fire({
+                        title: 'Task deleted!',
+                        text: `Task "${taskName}" was successfully deleted!`,
+                        color: swalColor,
+                        background: swalBg, 
+                        iconHtml: '<i class="bi bi-trash3"></i>',
+                        customClass:{
+                            icon: `${Style.iconBorder}`,
+                        },
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            })
+        }
     };
 
     const markAsDone = (taskId, taskName) => { //mark task item as done
