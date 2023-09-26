@@ -15,7 +15,7 @@ const GroceryContextProvider = ({children}) => {
     const [darkMode, setDarkModee] = useState(false);
     const [swalBg, setSwalBg] = useState('#f8f9fa');
     const [swalColor, setSwalColor] = useState('#212529');
-
+    
     let localGroceryList = JSON.parse(localStorage.getItem('localGroceryList'));
     let localTaskDone = JSON.parse(localStorage.getItem('localTaskDone1'));
 
@@ -61,7 +61,7 @@ const GroceryContextProvider = ({children}) => {
             setSwalColor('#212529');
         }
     },[darkMode]);   
-    
+
     //show alert message if task was updated/MarkedAsDone.
     const displaySwalFire = (swalTitle, swalText) => { 
         Swal.fire({
@@ -141,8 +141,12 @@ const GroceryContextProvider = ({children}) => {
     };
 
     const editTaskItem = (taskId, taskName) => { //edit task item   
-        let updateIndicator = false;     
+        let updateIndicator = false;  
+        let prevTaskName = '';   
         const updateTaskItem = groceryList.map((item)=>{
+            if (item.id === taskId) {
+                prevTaskName = item.name;
+            }
             if (item.id === taskId && item.name !== taskName.trim()) {
                 updateIndicator = true;
                 return{...item, name: taskName.trim()};
@@ -150,13 +154,27 @@ const GroceryContextProvider = ({children}) => {
             
             return item;
         });
-
-        setGroceryList(updateTaskItem);  
-
+        
         if (updateIndicator) {
-            let swalText = `Task was updated to "${taskName}".`;
+            Swal.fire({
+                title: `Update task "${prevTaskName}"?`,
+                text: `Task "${prevTaskName}" will update to "${taskName}".`,
+                icon: 'info',
+                color: swalColor,
+                background: swalBg, 
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setGroceryList(updateTaskItem);  
 
-            displaySwalFire('Task Updated!', swalText); //display alert message
+                    let swalText = `Task was updated to "${taskName}".`;
+
+                    displaySwalFire('Task Updated!', swalText); //display alert message
+                }
+            })  
         }
     };
 

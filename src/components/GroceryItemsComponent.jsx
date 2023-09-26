@@ -65,9 +65,23 @@ const GroceryItemsComponent = () => {
                                 <button 
                                     className={'btn btn-light shadow-sm fs-6 mb-2 ' + Style.clrBtn + (darkMode ? ' clrDoneBtn' : '')} 
                                     onClick={()=>{
-                                        setGroceryList([]);
-                                        localStorage.setItem('localGroceryList', JSON.stringify([]));
-                                        swalAlertFunc('Tasks Cleared!','All Tasks was successfully deleted!');
+                                        Swal.fire({
+                                            title: 'Delete all pending tasks?',
+                                            text: "You won't be able to revert this!",
+                                            icon: 'warning',
+                                            color: swalColor,
+                                            background: swalBg, 
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Yes, delete all!'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                setGroceryList([]);
+                                                localStorage.setItem('localGroceryList', JSON.stringify([]));
+                                                swalAlertFunc('Tasks Cleared!','All Tasks was successfully deleted!');
+                                            }
+                                        })
                                     }}
                                 >
                                     Clear Tasks
@@ -116,9 +130,23 @@ const GroceryItemsComponent = () => {
                                             type="button" 
                                             className="btn btn-danger" 
                                             onClick={()=>{
-                                                setTaskDone([]);
-                                                localStorage.setItem('localTaskDone1', JSON.stringify([]));
-                                                swalAlertFunc('Cleared!','Your accomplished tasks were cleared!');
+                                                Swal.fire({
+                                                    title: 'Delete all accomplished tasks?',
+                                                    text: "You won't be able to revert this!",
+                                                    icon: 'warning',
+                                                    color: swalColor,
+                                                    background: swalBg, 
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Yes, delete all!'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        setTaskDone([]);
+                                                        localStorage.setItem('localTaskDone1', JSON.stringify([]));
+                                                        swalAlertFunc('Cleared!','Your accomplished tasks were cleared!');
+                                                    }
+                                                })
                                             }}
                                         >
                                             Clear Items

@@ -22,13 +22,25 @@ const DisplayItems = (
     const [taskExist3, setTaskExist3] = useState(false);
     const [taskExist4, setTaskExist4] = useState(false);
 
+    useEffect(()=>{
+        setEditedTask(items.name);
+
+        if (items.name === editedTask) {
+            setEditedTask(items.name);
+            setIsEdit(false); 
+        }
+    },[items]);
+
     const saveEdit = (event) => {
         event.preventDefault();
         if (editedTask.trim().length !== 0) {
             if (!editErrMsg) {
                 setEditErrMsg(''); 
-                editTaskItem(items.id, editedTask);
-                setIsEdit(false);   
+                editTaskItem(items.id, editedTask);  
+                if (items.name === editedTask) {
+                    setEditedTask(items.name);
+                    setIsEdit(false); 
+                }
             }else{
                 editInputRef.current.focus();
             }
