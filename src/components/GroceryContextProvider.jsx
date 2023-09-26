@@ -62,7 +62,8 @@ const GroceryContextProvider = ({children}) => {
         }
     },[darkMode]);   
     
-    const displaySwalFire = (swalTitle, swalText) => { //show alert message if task was updated/MarkedAsDone.
+    //show alert message if task was updated/MarkedAsDone.
+    const displaySwalFire = (swalTitle, swalText) => { 
         Swal.fire({
             icon: 'success',
             title: `${swalTitle}`,
